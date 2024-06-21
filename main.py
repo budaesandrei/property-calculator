@@ -1,12 +1,7 @@
 import streamlit as st
 import math
 from utils import *
-def get_initial_rate():
-    if 'current_rate' not in st.session_state:
-        st.session_state.current_rate = get_current_rate()
 
-# Initialize the current rate
-get_initial_rate()
 
 st.set_page_config(
     page_title="Property Calculator",
@@ -14,6 +9,23 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+
+def load_css(file_path):
+    with open(file_path) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+load_css("style.css")
+
+
+def get_initial_rate():
+    if 'current_rate' not in st.session_state:
+        st.session_state.current_rate = get_current_rate()
+
+
+get_initial_rate()
+
 
 st.title("🏡 Property Calculator")
 
